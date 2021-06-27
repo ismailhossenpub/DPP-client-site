@@ -5,7 +5,7 @@ import { } from '@fortawesome/free-regular-svg-icons';
 
 const AppointmentDataTable = ({appointments}) => {
     const deleteBook = (id) => {
-        fetch(`http://localhost:5000/deleteBook/${id}`, {
+        fetch(`https://rocky-savannah-25374.herokuapp.com/deleteBook/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

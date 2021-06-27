@@ -13,7 +13,7 @@ const Dashboard = () => {
     const handleDateChange = date => {
         setSelectedDate(date);
 
-        fetch('http://localhost:5000/appointmentsByDate', {
+        fetch('https://rocky-savannah-25374.herokuapp.com/appointmentsByDate', {
             method: 'POST',
             headers: { 'content-type': 'application/json'},
             body: JSON.stringify({date})
