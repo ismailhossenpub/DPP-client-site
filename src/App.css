@@ -1,0 +1,39 @@
+.btn-brand{
+  background-image: linear-gradient(75deg, #19D3AE, #0fcfec);
+  border-color: transparent;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: white;
+}
+.text-brand{
+  color: #1cc7c1;
+}
+a{
+  text-decoration: none;
+}
+/* p{
+  text-align: justify;
+} */
+.bg-color{
+  background-color: #1cc7c1;
+}
+.text-color{
+  color: white;
+}
+/* div{
+  border: 1px solid red;
+} */
+.containerStyle {
+  background-color: #F4FDFB;
+  height:100vh;
+}
+.container-Style {
+  background-color: #F4FDFB;
+  height:100%;
+}
+/* #root{
+    background-color: #F4FDFB;
+} */
+.padding-Top{
+ padding-top: 5%;
+}

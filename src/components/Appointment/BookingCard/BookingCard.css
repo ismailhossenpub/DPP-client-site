@@ -1,0 +1,9 @@
+.booking-card{
+    border: none ;
+    box-shadow: 0 0 10px #c0b4b4b0;
+}
+
+.booking-card p{
+    font-size: 14px;
+    font-weight: 200;
+}
