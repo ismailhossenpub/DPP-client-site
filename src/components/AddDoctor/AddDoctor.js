@@ -1,39 +1,50 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import Sidebar from '../Dashboard/Sidebar/Sidebar';
 
 const AddDoctor = () => {
-    const [info, setInfo] = useState({});
-    const [file, setFile] = useState(null);
-    const handleBlur = e => {
-        const newInfo = { ...info };
-        newInfo[e.target.name] = e.target.value;
-        setInfo(newInfo);
-    }
+    const { register, handleSubmit, watch, errors } = useForm();
+    const [imageURL, setImageURL] = useState(null);
 
-    const handleFileChange = (e) => {
-        const newFile = e.target.files[0];
-        setFile(newFile);
-    }
-
-    const handleSubmit = () => {
-        const formData = new FormData()
-        console.log(info);
-        formData.append('file', file);
-        formData.append('name', info.name);
-        formData.append('email', info.email);
-
-        fetch('https://rocky-savannah-25374.herokuapp.com/addADoctor', {
-            method: 'POST',
-            body: formData
+    const onSubmit = (data) => {
+        const Doctors = {
+          name: data.name,
+          phone: data.phone,
+          email: data.email,
+          image: imageURL,
+        };
+        const url = `https://rocky-savannah-25374.herokuapp.com/addADoctor`;
+    
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(Doctors),
         })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data)
-            })
-            .catch(error => {
-                console.error(error)
-            })
-    }
+        .then((res) => res.json())
+      .then((success) => {
+        if (success) { 
+          alert('Add Doctor successfully.');
+        }
+      });
+      };
+
+      const handleImageUpload = (event) => {
+        const imageData = new FormData();
+        imageData.set("key", "70f03499b47cc0c6361945e260f26a2e");
+        imageData.append("image", event.target.files[0]);
+
+        axios.post("https://api.imgbb.com/1/upload", imageData)
+          .then(function (response) {
+            setImageURL(response.data.data.display_url);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      };
+
 
     return (
         <section className="containerStyle">
@@ -43,18 +54,22 @@ const AddDoctor = () => {
                 </div>
                 <div className="col-md-5 p-4 pr-5 justify-content-center booking-card p-3 table-style">
                 <h5 className="text-brand">Add a Doctor</h5>
-                    <form onSubmit={handleSubmit}>
-                        <div className="form-group mb-1">
-                            <label htmlFor="exampleInputEmail1">Email address</label>
-                            <input onBlur={handleBlur} type="email" className="form-control" name="email" placeholder="Enter email" />
-                        </div>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-group mb-1">
                             <label htmlFor="exampleInputPassword1">Name</label>
-                            <input onBlur={handleBlur} type="text" className="form-control" name="name" placeholder="Name" />
+                            <input  type="text" ref={register({ required: true })} className="form-control" name="name" placeholder="Full Name" />
+                        </div>
+                        <div className="form-group mb-1">
+                            <label htmlFor="exampleInputEmail1">Phone</label>
+                            <input  type="text" ref={register({ required: true })} className="form-control" name="phone" placeholder="Phone Number" />
+                        </div>
+                        <div className="form-group mb-1">
+                            <label htmlFor="exampleInputEmail1">Email address</label>
+                            <input type="email" ref={register({ required: true })} className="form-control" name="email" placeholder="Enter email" />
                         </div>
                         <div className="form-group mb-2">
                             <label htmlFor="exampleInputPassword1">Upload a image</label>
-                            <input onChange={handleFileChange} type="file" className="form-control" id="exampleInputPassword1" placeholder="Picture" />
+                            <input onChange={handleImageUpload} type="file" className="form-control" id="exampleInputPassword1" placeholder="Picture" />
                         </div>
                         <button type="submit" className="btn btn-brand">Submit</button>
                     </form>
