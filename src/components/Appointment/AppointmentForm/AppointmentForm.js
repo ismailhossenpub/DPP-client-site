@@ -24,16 +24,16 @@ const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn, date }) => {
     data.created = new Date();
     console.log(data);
 
-    fetch( "https://rocky-savannah-25374.herokuapp.com/addAppointment", {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify(data)
+    fetch("https://rocky-savannah-25374.herokuapp.com/addAppointment", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(data),
     })
-    .then((res) => res.json())
+      .then((res) => res.json())
       .then((success) => {
-        if (success) { 
+        if (success) {
           closeModal();
-          alert('Appointment created successfully.');
+          alert("Appointment created successfully.");
         }
       });
   };
