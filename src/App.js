@@ -15,6 +15,10 @@ import AllPatients from "./components/AllPatients/AllPatients/AllPatients";
 import AddDoctor from "./components/AddDoctor/AddDoctor";
 import NotFound from "./components/Shared/NotFound/NotFound";
 import PrivateRoute from "./components/Login/PrivateRoute/PrivateRoute";
+import Contact from "./components/Home/Contact/Contact";
+import Blogs from "./components/Home/Blogs/Blogs";
+import Doctor from "./components/Home/Doctor/Doctor";
+import MakeAdmin from "./components/Dashboard/MakeAdmin/MakeAdmin";
 
 export const UserContext = createContext();
 
@@ -30,6 +34,9 @@ function App() {
           <Route path="/appointment">
             <Appointment></Appointment>
           </Route>
+          <Route path="/MakeAppointment">
+            <MakeAdmin></MakeAdmin>
+          </Route>
           <Route path="/doctor/dashboard">
             <Dashboard></Dashboard>
           </Route>
@@ -38,6 +45,9 @@ function App() {
           </Route>
           <Route path="/doctor/AddDoctor">
             <AddDoctor></AddDoctor>
+          </Route>
+          <Route path="/contact">
+            <Contact></Contact>
           </Route>
           <Route path="/login">
             <Login></Login>

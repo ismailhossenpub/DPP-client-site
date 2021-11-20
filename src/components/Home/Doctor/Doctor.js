@@ -9,14 +9,14 @@ const Doctor = ({ doctor }) => {
       <img
         style={{ height: "200px" }}
         className="img-fluid mb-3"
-        src={doctor.image}
+        src={doctor?.image}
         alt="No img"
       />
-      <h4>{doctor.name}</h4>
-      <h6>{doctor.designation}</h6>
+      <h4>{doctor?.name}</h4>
+      <h6>{doctor?.designation}</h6>
       <p>
         <FontAwesomeIcon className="text-primary" icon={faPhoneAlt} />
-        {doctor.phone}
+        {doctor?.phone}
       </p>
     </div>
   );

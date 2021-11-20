@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Sidebar from "../Dashboard/Sidebar/Sidebar";
+import AdminSidebar from "../Shared/AdminSidebar/AdminSidebar";
 
 const AddDoctor = () => {
   const { register, handleSubmit, watch, errors } = useForm();
@@ -11,6 +12,7 @@ const AddDoctor = () => {
     const Doctors = {
       name: data.name,
       phone: data.phone,
+      email: data.email,
       designation: data.designation,
       image: imageURL,
     };
@@ -50,7 +52,7 @@ const AddDoctor = () => {
     <section className="containerStyle">
       <div className="container-fluid row">
         <div className="col-md-3">
-          <Sidebar></Sidebar>
+          <AdminSidebar></AdminSidebar>
         </div>
         <div className="col-md-5 p-4 pr-5 justify-content-center booking-card p-3 table-style">
           <h5 className="text-brand">Add a Doctor</h5>
@@ -73,6 +75,16 @@ const AddDoctor = () => {
                 className="form-control"
                 name="phone"
                 placeholder="Phone Number"
+              />
+            </div>
+            <div className="form-group mb-1">
+              <label htmlFor="exampleInputEmail">Email</label>
+              <input
+                type="text"
+                ref={register({ required: true })}
+                className="form-control"
+                name="email"
+                placeholder="Email"
               />
             </div>
             <div className="form-group mb-1">
